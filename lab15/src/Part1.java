@@ -1,0 +1,73 @@
+public class Part1 {
+    public static void main(String[] args) {
+        Account account = new Account(1122, 20000);
+        account.inputAnnualInterestRate(4.5);
+        account.withdraw(2500.0);
+        account.deposit(3000.0);
+        System.out.println("The balance of the account " + account.getBalance());
+        System.out.println("The montly interest percent: " + account.getMonthlyInterest());
+        System.out.println("Date created: " + account.getDateCreated());
+
+    }
+}
+
+class Account {
+    private int id = 0;
+    private double balance = 0.0;
+    private static double annualInterestRate = 0.0;
+    private java.util.Date dateCreated;
+
+    public Account() {
+        dateCreated = new java.util.Date();
+    }
+
+    public Account(int id, double balace) {
+        this();
+        this.id = id;
+        this.balance = balance;
+    }
+
+    public int getId() {
+        return this.id;
+    }
+
+    public double getBalance() {
+        return this.balance;
+    }
+
+    public double getAnnualInterestRate() {
+        return annualInterestRate;
+    }
+
+    public String getDateCreated() {
+        return this.dateCreated.toString();
+    }
+
+    public void inputId(int id) {
+        this.id = id;
+    }
+
+    public void inputBalance(double balance) {
+        this.balance = balance;
+    }
+
+    public void inputAnnualInterestRate(double annualInterestRate) {
+        this.annualInterestRate = annualInterestRate;
+    }
+
+    public double getMonthlyInterestRate() {
+        return (annualInterestRate/100)/12;
+    }
+
+    public double getMonthlyInterest() {
+        return balance * getMonthlyInterestRate();
+    }
+
+    public void withdraw(double amount) {
+        this.balance -= amount;
+    }
+
+    public void deposit(double amount) {
+        this.balance += amount;
+    }
+}
